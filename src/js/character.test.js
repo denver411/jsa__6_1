@@ -15,14 +15,20 @@ test('Создается персонаж с заданными свойства
 });
 
 test('Неверный тип персонажа приводит к ошибке создания', () => {
-  const character = new Character('Batman', 'Batman');
-
-  expect(character).toEqual(Error('Указан неверный тип персонажа'));
+  try {
+    const character = new Character('Batman', 'Batman');
+    expect(character).toBeUndefined();
+  } catch (e) {
+    expect(e).toEqual(Error('Указан неверный тип персонажа'));
+  }
 });
 
 
 test('Некорректное имя персонажа приводит к ошибке создания', () => {
-  const character = new Character('Optimus Prime', 'Undead');
-
-  expect(character).toEqual(Error('Имя не соотвествует правилам'));
+  try {
+    const character = new Character('Optimus Prime', 'Undead');
+    expect(character).toBeUndefined();
+  } catch (e) {
+    expect(e).toEqual(Error('Имя не соотвествует правилам'));
+  }
 });
